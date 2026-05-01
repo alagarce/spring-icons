@@ -1,27 +1,28 @@
 <!-- Plugin Configuration File: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
 <idea-plugin>
   <!-- Unique identifier of the plugin. It should be FQN, cannot be changed between the plugin versions. -->
-  <id>com.alagarce.spring-icons</id>
+  <depends>com.intellij.modules.platform</depends>
 
   <!-- Public plugin name should be written in Title Case.
        Guidelines: https://plugins.jetbrains.com/docs/marketplace/best-practices-for-listing.html#plugin-name -->
-  <name>Spring-icons</name>
-
-  <!-- A displayed Vendor name or Organization ID displayed on the Plugins Page. -->
-  <vendor url="https://github.com/alagarce">Alagarce</vendor>
-
-  <!-- Description of the plugin displayed on the Plugin Page and IDE Plugin Manager.
-       Guidelines: https://plugins.jetbrains.com/docs/marketplace/best-practices-for-listing.html#plugin-description -->
+  <depends>com.intellij.java</depends>
   <description>spring icons library for IntelliJ IDEA. customizable</description>
 
-  <!-- Product and plugin compatibility requirements.
-       Read more: https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html -->
-  <depends>com.intellij.modules.platform</depends>
-  <depends>com.intellij.java</depends>
-  <!-- Extensions defined by the plugin.
-       Read more: https://plugins.jetbrains.com/docs/intellij/plugin-extension-points.html -->
+  <!-- A displayed Vendor name or Organization ID displayed on the Plugins Page. -->
   <extensions defaultExtensionNs="com.intellij">
     <iconProvider implementation="com.alagarce.springicons.SpringBootIconProvider"/>
     <projectViewNodeDecorator implementation="com.alagarce.springicons.SpringBootNodeDecorator"/>
   </extensions>
+
+  <!-- Description of the plugin displayed on the Plugin Page and IDE Plugin Manager.
+       Guidelines: https://plugins.jetbrains.com/docs/marketplace/best-practices-for-listing.html#plugin-description -->
+  <id>com.alagarce.spring-icons</id>
+
+  <!-- Product and plugin compatibility requirements.
+       Read more: https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html -->
+  <name>Spring Icons</name>
+  <vendor url="https://github.com/alagarce">Alagarce</vendor>
+  <!-- Extensions defined by the plugin.
+       Read more: https://plugins.jetbrains.com/docs/intellij/plugin-extension-points.html -->
+  <version>1.0.0</version>
 </idea-plugin>

@@ -1,118 +1,97 @@
-# IntelliJ Platform Plugin Template
+# 🌱 Spring Icons — IntelliJ Plugin
 
-[![Twitter Follow](https://img.shields.io/badge/follow-%40JBPlatform-1DA1F2?logo=twitter)](https://twitter.com/JBPlatform)
-[![Developers Forum](https://img.shields.io/badge/JetBrains%20Platform-Join-blue)][jb:forum]
+**Clean, modern, color‑coded icons for Spring Boot projects**
 
-## Plugin template structure
+Spring Icons is an IntelliJ IDEA plugin that enhances the readability of Spring Boot and Java
+projects by applying **custom, meaningful, color‑coded icons** to files and folders based on their
+role in the application architecture.
 
-A generated project contains the following content structure:
+It brings instant visual clarity to large codebases by making controllers, services, repositories,
+DTOs, models, configs, tests, mocks, and more immediately recognizable.
 
-```
-.
-├── .run/                   Predefined Run/Debug Configurations
-├── build/                  Output build directory
-├── gradle
-│   ├── wrapper/            Gradle Wrapper
-├── src                     Plugin sources
-│   ├── main
-│   │   ├── kotlin/         Kotlin production sources
-│   │   └── resources/      Resources - plugin.xml, icons, messages
-├── .gitignore              Git ignoring rules
-├── build.gradle.kts        Gradle build configuration
-├── gradle.properties       Gradle configuration properties
-├── gradlew                 *nix Gradle Wrapper script
-├── gradlew.bat             Windows Gradle Wrapper script
-├── README.md               README
-└── settings.gradle.kts     Gradle project settings
-```
+---
 
-In addition to the configuration files, the most crucial part is the `src` directory, which contains
-our implementation and the manifest for our plugin – [plugin.xml][file:plugin.xml].
+## ✨ Features
 
-> [!NOTE]
-> To use Java in your plugin, create the `/src/main/java` directory.
+### 🔹 Smart file icon detection
 
-## Plugin configuration file
+Automatically assigns icons based on filename patterns:
 
-The plugin configuration file is a [plugin.xml][file:plugin.xml] file located in the
-`src/main/resources/META-INF` directory.
-It provides general information about the plugin, its dependencies, extensions, and listeners.
+- `*Controller.java` → Controller icon
+- `*Service.java` → Service icon
+- `*Repository.java` → Repository icon
+- `*Mapper.java`, `*Utils.java` → Mapper icon
+- `*Dto.java`, `*Record.java` → DTO icon
+- `*Entity.java`, `*Model.java` → Model icon
+- `*Config.java` → Config icon
+- `*Exception.java` → Error icon
+- `*Test.java` → Test icon
+- `Mock*`, `Fake*`, `Stub*` → Mock icon
+- And many more…
 
-You can read more about this file in the [Plugin Configuration File][docs:plugin.xml] section of our
-documentation.
+All regex rules are centralized and fully configurable.
 
-If you're still not quite sure what this is all about, read our
-introduction: [What is the IntelliJ Platform?][docs:intro]
+---
 
-$H$H Predefined Run/Debug configurations
+### 🔹 Smart folder icon detection
 
-Within the default project structure, there is a `.run` directory provided containing predefined
-*Run/Debug configurations* that expose corresponding Gradle tasks:
+Folders are also recognized based on their path:
 
-| Configuration name | Description                                                                                                                                                                         |
-|--------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Run Plugin         | Runs [`:runIde`][gh:intellij-platform-gradle-plugin-runIde] IntelliJ Platform Gradle Plugin task. Use the *Debug* icon for plugin debugging.                                        |
-| Run Tests          | Runs [`:test`][gradle:lifecycle-tasks] Gradle task.                                                                                                                                 |
-| Run Verifications  | Runs [`:verifyPlugin`][gh:intellij-platform-gradle-plugin-verifyPlugin] IntelliJ Platform Gradle Plugin task to check the plugin compatibility against the specified IntelliJ IDEs. |
+- `/controller/`
+- `/service/`
+- `/repository/`
+- `/model/`, `/entity/`, `/domain/`
+- `/dto/`
+- `/config/`
+- `/security/`
+- `/validator/`
+- `/event/`
+- `/scheduler/`
+- `/shared/`, `/common/`
+- `/resources/`
+- `/test/`, `/tests/`
+- `/src/`, `/app/`
+- Hidden folders (`/.git`, `/build`, `/target`)
 
-> [!NOTE]
-> You can find the logs from the running task in the `idea.log` tab.
+Each folder type gets its own icon and color.
 
-## Publishing the plugin
+---
 
-> [!TIP]
-> Make sure to follow all guidelines listed in [Publishing a Plugin][docs:publishing] to follow all
-> recommended and required steps.
+### 🔹 Class‑type awareness
 
-Releasing a plugin to [JetBrains Marketplace](https://plugins.jetbrains.com) is a straightforward
-operation that uses the `publishPlugin` Gradle task provided by
-the [intellij-platform-gradle-plugin][gh:intellij-platform-gradle-plugin-docs].
+The plugin detects Java PSI elements and adapts icons accordingly:
 
-You can also upload the plugin to
-the [JetBrains Plugin Repository](https://plugins.jetbrains.com/plugin/upload) manually via UI.
+- **Interfaces** → interface icon set
+- **Abstract classes** → icon with transparency (AlphaIcon)
+- **Records** → dedicated record icon
+- **Mocks / Fakes / Stubs** → mock icon
+- **Default classes** → default icon
 
-## Useful links
+---
 
-- [IntelliJ Platform SDK Plugin SDK][docs]
-- [IntelliJ Platform Gradle Plugin Documentation][gh:intellij-platform-gradle-plugin-docs]
-- [IntelliJ Platform Explorer][jb:ipe]
-- [JetBrains Marketplace Quality Guidelines][jb:quality-guidelines]
-- [IntelliJ Platform UI Guidelines][jb:ui-guidelines]
-- [JetBrains Marketplace Paid Plugins][jb:paid-plugins]
-- [IntelliJ SDK Code Samples][gh:code-samples]
+### 🔹 Color‑coded icon sets
 
-[docs]: https://plugins.jetbrains.com/docs/intellij
+Each Spring layer has its own color palette:
 
-[docs:intro]: https://plugins.jetbrains.com/docs/intellij/intellij-platform.html?from=IJPluginTemplate
+- Controllers → Red
+- Services → Blue
+- Repositories → Purple
+- Models → Blue‑gray
+- DTOs → Cyan
+- Config → Yellow
+- Security → Orange
+- Tests → Green
+- Mocks → Violet
+- Records → Light cyan
 
-[docs:plugin.xml]: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html?from=IJPluginTemplate
+All icons are custom SVGs optimized for IntelliJ’s dark themes.
 
-[docs:publishing]: https://plugins.jetbrains.com/docs/intellij/publishing-plugin.html?from=IJPluginTemplate
+---
 
-[file:plugin.xml]: ./src/main/resources/META-INF/plugin.xml
+## 📦 Installation
 
-[gh:code-samples]: https://github.com/JetBrains/intellij-sdk-code-samples
+### Option 1 — Install from ZIP (local install)
 
-[gh:intellij-platform-gradle-plugin]: https://github.com/JetBrains/intellij-platform-gradle-plugin
-
-[gh:intellij-platform-gradle-plugin-docs]: https://plugins.jetbrains.com/docs/intellij/tools-intellij-platform-gradle-plugin.html
-
-[gh:intellij-platform-gradle-plugin-runIde]: https://plugins.jetbrains.com/docs/intellij/tools-intellij-platform-gradle-plugin-tasks.html#runIde
-
-[gh:intellij-platform-gradle-plugin-verifyPlugin]: https://plugins.jetbrains.com/docs/intellij/tools-intellij-platform-gradle-plugin-tasks.html#verifyPlugin
-
-[gradle:lifecycle-tasks]: https://docs.gradle.org/current/userguide/java_plugin.html#lifecycle_tasks
-
-[jb:github]: https://github.com/JetBrains/.github/blob/main/profile/README.md
-
-[jb:forum]: https://platform.jetbrains.com/
-
-[jb:quality-guidelines]: https://plugins.jetbrains.com/docs/marketplace/quality-guidelines.html
-
-[jb:paid-plugins]: https://plugins.jetbrains.com/docs/marketplace/paid-plugins-marketplace.html
-
-[jb:quality-guidelines]: https://plugins.jetbrains.com/docs/marketplace/quality-guidelines.html
-
-[jb:ipe]: https://jb.gg/ipe
-
-[jb:ui-guidelines]: https://jetbrains.github.io/ui
+1. Generate the plugin ZIP:
+   ```bash
+   ./gradlew buildPlugin
