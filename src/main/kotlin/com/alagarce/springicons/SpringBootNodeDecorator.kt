@@ -1,6 +1,8 @@
 package com.alagarce.springicons
 
-import com.alagarce.springicons.data.icons.FolderIcons
+import com.alagarce.springicons.data.icons.objects.FolderIcons
+import com.alagarce.springicons.rules.model.IconRule
+import com.alagarce.springicons.rules.mapping.MappingRules
 import com.intellij.ide.projectView.PresentationData
 import com.intellij.ide.projectView.ProjectViewNode
 import com.intellij.ide.projectView.ProjectViewNodeDecorator
@@ -9,7 +11,7 @@ import com.intellij.psi.PsiDirectory
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiManager
 
-class MyNodeDecorator: ProjectViewNodeDecorator {
+class SpringBootNodeDecorator: ProjectViewNodeDecorator {
 
 
     fun extractPsi(value: Any, project: Project): PsiElement? {
@@ -29,45 +31,29 @@ class MyNodeDecorator: ProjectViewNodeDecorator {
     ) {
         val value = node.value ?: return
 
-        // On récupère le PSI associé au nœud
         val psi = extractPsi(value, node.project) ?: return
 
-        // On ne traite que les dossiers (packages Java inclus)
         if (psi is PsiDirectory) {
             val path = psi.virtualFile.path.lowercase()
 
-            // DEBUG
-            println("DECORATOR: $path")
+            val applyingRule =  MappingRules.FOLDER_RULES.stream()
+                .filter { rule: IconRule? -> rule!!.pattern.matcher(path).matches() }
+                .findFirst().orElse(null);
 
-            // Exemple : controller
-            if (path.contains("/controller")) {
-                data.setIcon(FolderIcons.controller)
-                return
+            data.setIcon(applyingRule?.icon ?: FolderIcons.default);
+            if(data.getIcon(open = false) == FolderIcons.hidden){
+                val base = data.forcedTextForeground ?: com.intellij.ui.JBColor.foreground()
+
+                val faded = java.awt.Color(
+                    base.red,
+                    base.green,
+                    base.blue,
+                    120 // alpha entre 0 et 255
+                )
+
+                data.forcedTextForeground = faded
             }
 
-            // Exemple : service
-            if (path.contains("/service")) {
-                data.setIcon(FolderIcons.service)
-                return
-            }
-
-            // Exemple : repository
-            if (path.contains("/repository")) {
-                data.setIcon(FolderIcons.repository)
-                return
-            }
-
-            // Exemple : dto
-            if (path.contains("/dto")) {
-                data.setIcon(FolderIcons.dto)
-                return
-            }
-
-            // Exemple : model
-            if (path.contains("/model")) {
-                data.setIcon(FolderIcons.model)
-                return
-            }
             return;
         }
     }

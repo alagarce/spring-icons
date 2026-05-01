@@ -1,4 +1,4 @@
-package com.alagarce.springicons.data.mapping
+package com.alagarce.springicons.rules.model
 
 import java.util.regex.Pattern
 import javax.swing.Icon

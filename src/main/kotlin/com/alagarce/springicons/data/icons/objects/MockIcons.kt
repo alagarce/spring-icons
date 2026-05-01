@@ -1,5 +1,7 @@
-package com.alagarce.springicons.data.icons
+package com.alagarce.springicons.data.icons.objects
 
-object MockIcons :IconSetFactory("/icons/mocks") {
+import com.alagarce.springicons.data.icons.IconSetFactory
+
+object MockIcons : IconSetFactory("/icons/mocks") {
 
 }

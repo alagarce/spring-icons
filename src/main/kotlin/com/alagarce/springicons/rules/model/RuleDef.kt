@@ -1,4 +1,4 @@
-package com.alagarce.springicons.data.mapping
+package com.alagarce.springicons.rules.model
 
 data class RuleDef(
     val regex: String,

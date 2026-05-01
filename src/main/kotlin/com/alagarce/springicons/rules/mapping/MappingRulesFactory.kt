@@ -1,6 +1,7 @@
-package com.alagarce.springicons.data.mapping
+package com.alagarce.springicons.rules.mapping
 
 import com.alagarce.springicons.data.icons.IconSetFactory
+import com.alagarce.springicons.rules.model.IconRule
 import java.util.regex.Pattern
 
 open class MappingRulesFactory(private val icons: IconSetFactory) {

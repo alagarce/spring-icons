@@ -1,6 +1,6 @@
 package com.alagarce.springicons.utils
 
-object Regex {
+object RegexConst {
 
     // -------------------------
     // FILE REGEXES
